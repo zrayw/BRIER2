@@ -77,10 +77,9 @@
     
 <p>In the <code>BRIER.S</code> framework, model fitting relies on two
 summary-level quantities: (i) the vector of standardized marginal
-correlations <span class="math inline">\(\boldsymbol{r} =
-\boldsymbol{X}^\top \boldsymbol{y}/n\)</span> between each genetic
-predictor and the outcome, and (ii) an estimate of the linkage
-disequilibrium (LD) matrix <span class="math inline">\(\widetilde{\boldsymbol{\Sigma}}\)</span>. In this
+correlations <span class="math inline">\(\mathbf{r} = \mathbf{X}^\top
+\mathbf{y}/n\)</span> between each genetic predictor and the outcome,
+and (ii) an estimate of the linkage disequilibrium (LD) matrix <span class="math inline">\(\widetilde{\mathbf{\Sigma}}\)</span>. In this
 section, we describe how these quantities can be recovered or
 approximated from GWAS summary statistics and external reference
 panels.</p>
@@ -112,24 +111,23 @@ when computing <span class="math inline">\(\tilde r_j\)</span>.</p>
 <div class="section level2">
 <h2 id="construction-of-the-ld-matrix">Construction of the LD matrix<a class="anchor" aria-label="anchor" href="#construction-of-the-ld-matrix"></a>
 </h2>
-<p>An estimate of the LD correlation matrix <span class="math inline">\(\widetilde{\boldsymbol{\Sigma}}\)</span> is
-required for model fitting in <code>BRIER.S</code>. Direct estimation of
-the full <span class="math inline">\(p \times p\)</span> LD matrix from
+<p>An estimate of the LD correlation matrix <span class="math inline">\(\widetilde{\mathbf{\Sigma}}\)</span> is required
+for model fitting in <code>BRIER.S</code>. Direct estimation of the full
+<span class="math inline">\(p \times p\)</span> LD matrix from
 individual-level data is often infeasible due to computational and
 storage constraints. Instead, <code>BRIER2</code> supports several
 practical and scalable strategies.</p>
 <div class="section level3">
 <h3 id="estimation-of-ld-using-a-reference-panel">Estimation of LD using a reference panel<a class="anchor" aria-label="anchor" href="#estimation-of-ld-using-a-reference-panel"></a>
 </h3>
-<p>The LD correlation matrix <span class="math inline">\(\widetilde{\boldsymbol{\Sigma}}\)</span> can be
+<p>The LD correlation matrix <span class="math inline">\(\widetilde{\mathbf{\Sigma}}\)</span> can be
 estimated using an external reference genotype panel when
-individual-level data from the target cohort are unavailable. Let <span class="math inline">\(\boldsymbol{G} \in \mathbb{R}^{n_r \times
-p}\)</span> denote the reference genotype matrix with <span class="math inline">\(n_r\)</span> individuals and <span class="math inline">\(p\)</span> SNPs. Each genotype vector is first
+individual-level data from the target cohort are unavailable. Let <span class="math inline">\(\mathbf{G} \in \mathbb{R}^{n_r \times p}\)</span>
+denote the reference genotype matrix with <span class="math inline">\(n_r\)</span> individuals and <span class="math inline">\(p\)</span> SNPs. Each genotype vector is first
 standardized to have mean zero and unit variance, after which the sample
 LD correlation matrix is computed as</p>
 <p><span class="math display">\[
-\widetilde{\boldsymbol{\Sigma}} = \frac{1}{n_r} \boldsymbol{G}^\top
-\boldsymbol{G}.
+\widetilde{\mathbf{\Sigma}} = \frac{1}{n_r} \mathbf{G}^\top \mathbf{G}.
 \]</span></p>
 <p>To reduce both computational and storage burden in high-dimensional
 settings, <code>BRIER2</code> adopts a block-wise LD approximation based
@@ -137,7 +135,7 @@ on approximately independent LD blocks defined in <span class="citation">(<stron
 strategy, the genome is partitioned into contiguous LD blocks, and LD is
 computed and stored separately within each block. Correlations between
 SNPs belonging to different blocks are set to zero, yielding a sparse
-block-diagonal approximation of <span class="math inline">\(\widetilde{\boldsymbol{\Sigma}}\)</span>. This
+block-diagonal approximation of <span class="math inline">\(\widetilde{\mathbf{\Sigma}}\)</span>. This
 approximation substantially improves scalability while preserving the
 essential local LD structure required for accurate polygenic
 modeling.</p>

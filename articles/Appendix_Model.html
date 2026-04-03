@@ -82,15 +82,14 @@
 <p>The <code>BRIER.FULL</code> procedure aims to minimize the following
 objective function:</p>
 <p><span class="math display">\[
-Q_{\boldsymbol{\eta}}(\boldsymbol{\beta})
+Q_{\mathbf{\eta}}(\mathbf{\beta})
 =
--\, \ell\!\left(\boldsymbol{\beta}\mid \boldsymbol{X},
-\boldsymbol{Y}\right)
+-\, \ell\!\left(\mathbf{\beta}\mid \mathbf{X}, \mathbf{Y}\right)
 -
 \sum_{m=1}^{M}
 \eta_m\,
-\ell\!\left(\boldsymbol{\beta}\mid \check{\boldsymbol{X}}_m,
-\check{\boldsymbol{Y}}_m\right).
+\ell\!\left(\mathbf{\beta}\mid \check{\mathbf{X}}_m,
+\check{\mathbf{Y}}_m\right).
 \]</span></p>
 <p>The integration weight <span class="math inline">\(\eta_m \ge
 0\)</span> controls the extent of information transferred from the <span class="math inline">\(m\)</span>-th external cohort to the target data.
@@ -101,7 +100,7 @@ are specified below.</p>
 <div class="section level3">
 <h3 id="generalized-linear-models">Generalized Linear Models<a class="anchor" aria-label="anchor" href="#generalized-linear-models"></a>
 </h3>
-<p>Assume that the conditional distribution of <span class="math inline">\(Y_i\)</span> given <span class="math inline">\(\boldsymbol{X}_i\)</span> belongs to the canonical
+<p>Assume that the conditional distribution of <span class="math inline">\(Y_i\)</span> given <span class="math inline">\(\mathbf{X}_i\)</span> belongs to the canonical
 exponential family, with conditional density</p>
 <p><span class="math display">\[
 f(Y_i; \theta_i, \phi)
@@ -124,19 +123,19 @@ canonical parameter. The mean and variance satisfy</p>
 <p>The mean <span class="math inline">\(\mu_i\)</span> is related to the
 linear predictor through a link function:</p>
 <p><span class="math display">\[
-g(\mu_i) = \eta_i = \boldsymbol{x}_i^\top \boldsymbol{\beta}.
+g(\mu_i) = \eta_i = \mathbf{x}_i^\top \mathbf{\beta}.
 \]</span></p>
 <p>The log-likelihood function is given by</p>
 <p><span class="math display">\[
-\ell(\boldsymbol{\beta})
+\ell(\mathbf{\beta})
 =
 \sum_{i=1}^n
-\log f\!\left(y_i \mid \theta_i(\boldsymbol{\beta}), \phi\right)
+\log f\!\left(y_i \mid \theta_i(\mathbf{\beta}), \phi\right)
 =
 \sum_{i=1}^n
 \left[
-\frac{y_i \theta_i(\boldsymbol{\beta}) -
-b\!\left(\theta_i(\boldsymbol{\beta})\right)}{a(\phi)}
+\frac{y_i \theta_i(\mathbf{\beta}) -
+b\!\left(\theta_i(\mathbf{\beta})\right)}{a(\phi)}
 +
 c(y_i,\phi)
 \right].
@@ -155,7 +154,7 @@ in <code>BRIER2</code>, including cumulant functions <span class="math inline">\
 <thead><tr class="header">
 <th align="left"><strong>Family</strong></th>
 <th align="left"><span class="math inline">\(\mathbf{b(\theta)}\)</span></th>
-<th align="left"><span class="math inline">\(\boldsymbol{\mu=b'(\theta)}\)</span></th>
+<th align="left"><span class="math inline">\(\mathbf{\mu=b'(\theta)}\)</span></th>
 <th align="left"><span class="math inline">\(\mathbf{\mathrm{Var}(Y)}\)</span></th>
 <th align="left"><strong><span class="math inline">\(g(\mu)\)</span></strong></th>
 </tr></thead>
@@ -191,7 +190,11 @@ e^\theta}{1-e^\theta}\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>For the Cox proportional hazards model, the negative log-partial
+</div>
+<div class="section level3">
+<h3 id="cox-proportional-hazards-models">Cox Proportional Hazards Models<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-models"></a>
+</h3>
+<p>For the Cox proportional hazard model, the negative log-partial
 likelihood admits a KL-divergence interpretation through the sequence of
 conditional failure-time distributions. Let <span class="math inline">\(t_{(1)} &lt; \cdots &lt; t_{(K)}\)</span> denote
 the ordered distinct event times, and let <span class="math inline">\(\mathcal{R}_k\)</span> denote the risk set
@@ -200,27 +203,27 @@ subject <span class="math inline">\(i_k\)</span> experiences the event
 at <span class="math inline">\(t_{(k)}\)</span>, the working Cox model
 induces the conditional probability</p>
 <p><span class="math display">\[
-f^{(\boldsymbol{\beta})}(i_k \mid \mathcal{R}_k)
+f^{(\mathbf{\beta})}(i_k \mid \mathcal{R}_k)
 =
-\frac{\exp(\boldsymbol{x}_{i_k}^{\top}\boldsymbol{\beta})}
-{\sum_{j\in\mathcal{R}_k}\exp(\boldsymbol{x}_j^{\top}\boldsymbol{\beta})}.
+\frac{\exp(\mathbf{x}_{i_k}^{\top}\mathbf{\beta})}
+{\sum_{j\in\mathcal{R}_k}\exp(\mathbf{x}_j^{\top}\mathbf{\beta})}.
 \]</span></p>
 <p>The log-partial likelihood of the working Cox model is</p>
 <p><span class="math display">\[
-\ell_p(\boldsymbol{\beta})
+\ell_p(\mathbf{\beta})
 =
 \sum_{k=1}^{K}
 \log
-f^{(\boldsymbol{\beta})}(i_k \mid \mathcal{R}_k)
+f^{(\mathbf{\beta})}(i_k \mid \mathcal{R}_k)
 =
 \sum_{k=1}^{K}
 \left[
-\boldsymbol{x}_{i_k}^{\top}\boldsymbol{\beta}
+\mathbf{x}_{i_k}^{\top}\mathbf{\beta}
 -
 \log
 \left(
 \sum_{j\in\mathcal{R}_k}
-\exp(\boldsymbol{x}_j^{\top}\boldsymbol{\beta})
+\exp(\mathbf{x}_j^{\top}\mathbf{\beta})
 \right)
 \right].
 \]</span></p>
@@ -233,10 +236,9 @@ f^{(\boldsymbol{\beta})}(i_k \mid \mathcal{R}_k)
 <p>The <code>BRIER.I</code> procedure minimizes the following
 objective:</p>
 <p><span class="math display">\[
-Q_{\boldsymbol{\eta}}(\boldsymbol{\beta})
+Q_{\mathbf{\eta}}(\mathbf{\beta})
 =
--\, \ell\!\left(\boldsymbol{\beta}\mid \boldsymbol{X},
-\boldsymbol{Y}\right)
+-\, \ell\!\left(\mathbf{\beta}\mid \mathbf{X}, \mathbf{Y}\right)
 +
 \sum_{m=1}^{M}
 \eta_m\,
@@ -244,16 +246,16 @@ Q_{\boldsymbol{\eta}}(\boldsymbol{\beta})
 \]</span></p>
 <p>The integration weight <span class="math inline">\(\eta_m \ge
 0\)</span> controls the extent of information transfer from the <span class="math inline">\(m\)</span>-th external cohort to the target data.
-Here, <span class="math inline">\(\ell\!\left(\boldsymbol{\beta}\mid
-\boldsymbol{X}, \boldsymbol{Y}\right)\)</span> is the log-likelihood
-evaluated on the target individual-level data, and <span class="math inline">\(\operatorname{D_{KL}}\!\left(\check{f}_m \,\|\,
+Here, <span class="math inline">\(\ell\!\left(\mathbf{\beta}\mid
+\mathbf{X}, \mathbf{Y}\right)\)</span> is the log-likelihood evaluated
+on the target individual-level data, and <span class="math inline">\(\operatorname{D_{KL}}\!\left(\check{f}_m \,\|\,
 f\right)\)</span> is the Kullback-Leibler (KL) divergence <span class="citation">(<strong>kullback1951_kl?</strong>)</span>, measuring
 the discrepancy between the density <span class="math inline">\(\check{f}_m\)</span> induced by the external model
-<span class="math inline">\(\check{\boldsymbol{\beta}}_m\)</span> and
-the density <span class="math inline">\(f\)</span> induced by the target
-working model <span class="math inline">\(\boldsymbol{\beta}\)</span>.
-For generalized linear models and the Cox proportional hazards model,
-the corresponding KL divergences are specified below.</p>
+<span class="math inline">\(\check{\mathbf{\beta}}_m\)</span> and the
+density <span class="math inline">\(f\)</span> induced by the target
+working model <span class="math inline">\(\mathbf{\beta}\)</span>. For
+generalized linear models and the Cox proportional hazards model, the
+corresponding KL divergences are specified below.</p>
 <div class="section level3">
 <h3 id="generalized-linear-models-1">Generalized Linear Models<a class="anchor" aria-label="anchor" href="#generalized-linear-models-1"></a>
 </h3>
@@ -274,7 +276,7 @@ f(y_i)
 function and <span class="math inline">\(g(\cdot)\)</span> is the link
 function. The canonical parameter <span class="math inline">\(\theta_i\)</span> satisfies</p>
 <p><span class="math display">\[
-b'(\theta_i) = g^{-1}(\boldsymbol{X}_i^\top \boldsymbol{\beta}).
+b'(\theta_i) = g^{-1}(\mathbf{X}_i^\top \mathbf{\beta}).
 \]</span></p>
 <p>The density <span class="math inline">\(\check{f}_{i,m}\)</span> is
 induced by the <span class="math inline">\(m\)</span>-th external model,
@@ -282,7 +284,7 @@ with canonical parameter <span class="math inline">\(\check{\theta}_{i,m}\)</spa
 <p><span class="math display">\[
 b'(\check{\theta}_{i,m})
 =
-g^{-1}(\boldsymbol{X}_i^\top \check{\boldsymbol{\beta}}_m).
+g^{-1}(\mathbf{X}_i^\top \check{\mathbf{\beta}}_m).
 \]</span></p>
 <p>The Kullback-Leibler divergence between the external model and the
 working model is defined as</p>
@@ -296,7 +298,7 @@ D_{\mathrm{KL}}\!\left(\check{f}_m \,\|\, f\right)
 \]</span></p>
 </div>
 <div class="section level3">
-<h3 id="cox-proportional-hazards-models">Cox Proportional Hazards Models<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-models"></a>
+<h3 id="cox-proportional-hazards-models-1">Cox Proportional Hazards Models<a class="anchor" aria-label="anchor" href="#cox-proportional-hazards-models-1"></a>
 </h3>
 <p>For time-to-event outcomes, <code>BRIER.I</code> adopts the
 <code>CoxKL</code> framework of <span class="citation">(<strong>wang2023_coxkl?</strong>)</span> to construct
@@ -307,18 +309,18 @@ density defined by the target model:</p>
 <p><span class="math display">\[
 f(A_s \mid B_s)
 =
-\frac{\exp\{\boldsymbol{X}_s^\top \boldsymbol{\beta}\}}
-{\sum_{i=1}^n Y_i(t_s)\exp\{\boldsymbol{X}_i^\top \boldsymbol{\beta}\}},
+\frac{\exp\{\mathbf{X}_s^\top \mathbf{\beta}\}}
+{\sum_{i=1}^n Y_i(t_s)\exp\{\mathbf{X}_i^\top \mathbf{\beta}\}},
 \]</span></p>
 <p>and let <span class="math inline">\(\check{f}_m(A_s \mid
-B_s)\)</span> denote the corresponding density induced by the <span class="math inline">\(m\)</span>-th external risk score <span class="math inline">\(\boldsymbol{X}^\top
-\check{\boldsymbol{\beta}}_m\)</span>:</p>
+B_s)\)</span> denote the corresponding density induced by the <span class="math inline">\(m\)</span>-th external risk score <span class="math inline">\(\mathbf{X}^\top
+\check{\mathbf{\beta}}_m\)</span>:</p>
 <p><span class="math display">\[
 \check{f}_m(A_s \mid B_s)
 =
-\frac{\exp\{\boldsymbol{X}_s^\top \check{\boldsymbol{\beta}}_m\}}
-{\sum_{i=1}^n Y_i(t_s)\exp\{\boldsymbol{X}_i^\top
-\check{\boldsymbol{\beta}}_m\}}.
+\frac{\exp\{\mathbf{X}_s^\top \check{\mathbf{\beta}}_m\}}
+{\sum_{i=1}^n Y_i(t_s)\exp\{\mathbf{X}_i^\top
+\check{\mathbf{\beta}}_m\}}.
 \]</span></p>
 <p>The discrepancy between the target model and the <span class="math inline">\(m\)</span>-th external model is measured by the
 accumulated KL divergence across all conditional experiments:</p>
@@ -343,40 +345,40 @@ D_{\mathrm{KL}}(\check{f}_m \parallel f)
 function, constructed from summary-level data using the squared
 Mahalanobis distance:</p>
 <p><span class="math display">\[
-Q_{\boldsymbol{\eta}}(\boldsymbol{\beta})
+Q_{\mathbf{\eta}}(\mathbf{\beta})
 =
 \frac{1}{2}\,
-\operatorname{D}_{\widetilde{\boldsymbol{\Sigma}}}
+\operatorname{D}_{\widetilde{\mathbf{\Sigma}}}
 \left(
-\widetilde{\boldsymbol{\Sigma}}^{-1}\widetilde{\boldsymbol{r}}\, \|\,
-\boldsymbol{\beta}
+\widetilde{\mathbf{\Sigma}}^{-1}\widetilde{\mathbf{r}}\, \|\,
+\mathbf{\beta}
 \right)
 +
 \frac{1}{2}
 \sum_{m=1}^{M}
 \eta_m\,
-\operatorname{D}_{\widetilde{\boldsymbol{\Sigma}}}
+\operatorname{D}_{\widetilde{\mathbf{\Sigma}}}
 \left(
-\check{\boldsymbol{\beta}}_m\, \|\, \boldsymbol{\beta}
+\check{\mathbf{\beta}}_m\, \|\, \mathbf{\beta}
 \right).
 \]</span></p>
 <p>The integration weight <span class="math inline">\(\eta_m \ge
 0\)</span> controls the contribution of each external model. The first
 term,</p>
 <p><span class="math display">\[
-\operatorname{D}_{\widetilde{\boldsymbol{\Sigma}}}
+\operatorname{D}_{\widetilde{\mathbf{\Sigma}}}
 \left(
-\widetilde{\boldsymbol{\Sigma}}^{-1}\widetilde{\boldsymbol{r}}\, \|\,
-\boldsymbol{\beta}
+\widetilde{\mathbf{\Sigma}}^{-1}\widetilde{\mathbf{r}}\, \|\,
+\mathbf{\beta}
 \right),
 \]</span></p>
 <p>is the squared Mahalanobis distance measuring the discrepancy between
 the target summary-level data and the target working model. The second
 term,</p>
 <p><span class="math display">\[
-\operatorname{D}_{\widetilde{\boldsymbol{\Sigma}}}
+\operatorname{D}_{\widetilde{\mathbf{\Sigma}}}
 \left(
-\check{\boldsymbol{\beta}}_m\, \|\, \boldsymbol{\beta}
+\check{\mathbf{\beta}}_m\, \|\, \mathbf{\beta}
 \right),
 \]</span></p>
 <p>measures the discrepancy between the target working model and the
@@ -386,8 +388,8 @@ term,</p>
 <h2 id="integration-of-multiple-external-models">Integration of multiple external models<a class="anchor" aria-label="anchor" href="#integration-of-multiple-external-models"></a>
 </h2>
 <p>Suppose <span class="math inline">\(K\)</span> external studies each
-provide a trained model with estimated coefficients <span class="math inline">\(\check{\boldsymbol{\beta}}_{1}, \dots,
-\check{\boldsymbol{\beta}}_{K}\)</span>. In principle, the original
+provide a trained model with estimated coefficients <span class="math inline">\(\check{\mathbf{\beta}}_{1}, \dots,
+\check{\mathbf{\beta}}_{K}\)</span>. In principle, the original
 <code>BRIER</code> framework can be extended to incorporate multiple
 sources of external information by introducing one tuning parameter for
 each external model. However, the resulting hyperparameter space grows
@@ -402,19 +404,19 @@ objective.</p>
 <h3 id="brieri-multi">
 <code>BRIERi.multi</code><a class="anchor" aria-label="anchor" href="#brieri-multi"></a>
 </h3>
-<p>When individual-level local data <span class="math inline">\(\{\boldsymbol{X}, \boldsymbol{Y}\}\)</span> are
-available, each external model <span class="math inline">\(\check{\boldsymbol{\beta}}_{k}\)</span> induces a
+<p>When individual-level local data <span class="math inline">\(\{\mathbf{X}, \mathbf{Y}\}\)</span> are available,
+each external model <span class="math inline">\(\check{\mathbf{\beta}}_{k}\)</span> induces a
 model-implied linear predictor</p>
 <p><span class="math display">\[
-\boldsymbol{\nu}_{k}
+\mathbf{\nu}_{k}
 =
-\boldsymbol{X}\check{\boldsymbol{\beta}}_{k},
+\mathbf{X}\check{\mathbf{\beta}}_{k},
 \]</span></p>
 <p>and the corresponding mean response</p>
 <p><span class="math display">\[
-\check{\boldsymbol{\mu}}_{k}
+\check{\mathbf{\mu}}_{k}
 =
-g^{-1}(\boldsymbol{\nu}_{k}),
+g^{-1}(\mathbf{\nu}_{k}),
 \]</span></p>
 <p>where <span class="math inline">\(g(\cdot)\)</span> is the link
 function of the generalized linear model.</p>
@@ -423,18 +425,18 @@ models, <code>BRIERi.multi</code> constructs an ensemble estimator by
 linearly aggregating their implied linear predictors. Specifically, we
 estimate ensemble weights <span class="math inline">\(\{\omega_k\}_{k=1}^K\)</span> by fitting</p>
 <p><span class="math display">\[
-g(\boldsymbol{Y})
+g(\mathbf{Y})
 =
-\sum_{k=1}^{K} \omega_k\, \boldsymbol{\nu}_{k}.
+\sum_{k=1}^{K} \omega_k\, \mathbf{\nu}_{k}.
 \]</span></p>
 <p>This yields a set of data-driven weights that reflect the relative
 contribution of each external model to the local prediction task.</p>
 <p>The resulting composite external model is defined as the weighted
 combination of the external coefficient vectors:</p>
 <p><span class="math display">\[
-\check{\boldsymbol{\beta}}
+\check{\mathbf{\beta}}
 =
-\sum_{k=1}^{K} \omega_k\, \check{\boldsymbol{\beta}}_{k}.
+\sum_{k=1}^{K} \omega_k\, \check{\mathbf{\beta}}_{k}.
 \]</span></p>
 <p>This aggregated coefficient vector can then be directly incorporated
 into the <code>BRIER.I</code> objective, reducing the dimensionality of
@@ -446,59 +448,57 @@ all external sources.</p>
 <code>BRIERs.multi</code><a class="anchor" aria-label="anchor" href="#briers-multi"></a>
 </h3>
 <p>When only summary-level local data are available, the
-individual-level quantities <span class="math inline">\(\{\boldsymbol{X}, \boldsymbol{Y}\}\)</span> cannot
-be accessed. Instead, we assume availability of the summary-level proxy
-statistics</p>
+individual-level quantities <span class="math inline">\(\{\mathbf{X},
+\mathbf{Y}\}\)</span> cannot be accessed. Instead, we assume
+availability of the summary-level proxy statistics</p>
 <p><span class="math display">\[
-\boldsymbol{r} = \frac{1}{n}\boldsymbol{X}^{\top}\boldsymbol{Y},
+\mathbf{r} = \frac{1}{n}\mathbf{X}^{\top}\mathbf{Y},
 \qquad
-\boldsymbol{R} = \frac{1}{n}\boldsymbol{X}^{\top}\boldsymbol{X},
+\mathbf{R} = \frac{1}{n}\mathbf{X}^{\top}\mathbf{X},
 \]</span></p>
-<p>where <span class="math inline">\(\boldsymbol{r}\)</span> denotes the
-score vector and <span class="math inline">\(\boldsymbol{R}\)</span>
-denotes the LD (correlation) matrix estimated from the local data.</p>
+<p>where <span class="math inline">\(\mathbf{r}\)</span> denotes the
+score vector and <span class="math inline">\(\mathbf{R}\)</span> denotes
+the LD (correlation) matrix estimated from the local data.</p>
 <p>In this setting, <code>BRIERs.multi</code> extends the ensemble
 framework of <code>BRIERi.multi</code> by estimating the ensemble
-weights using a least-squares proxy objective that depends only on <span class="math inline">\(\boldsymbol{r}\)</span> and <span class="math inline">\(\boldsymbol{R}\)</span>. Let</p>
+weights using a least-squares proxy objective that depends only on <span class="math inline">\(\mathbf{r}\)</span> and <span class="math inline">\(\mathbf{R}\)</span>. Let</p>
 <p><span class="math display">\[
-\boldsymbol{B}
+\mathbf{B}
 =
 \left(
-\check{\boldsymbol{\beta}}_{1},
+\check{\mathbf{\beta}}_{1},
 \ldots,
-\check{\boldsymbol{\beta}}_{K}
+\check{\mathbf{\beta}}_{K}
 \right)
 \]</span></p>
 <p>denote the matrix collecting the external coefficient vectors, and
-let <span class="math inline">\(\boldsymbol{w}\)</span> denote the
-ensemble weights. Consider the proxy quadratic loss</p>
+let <span class="math inline">\(\mathbf{w}\)</span> denote the ensemble
+weights. Consider the proxy quadratic loss</p>
 <p><span class="math display">\[
-\frac{1}{n}\big\|\boldsymbol{Y} -
-\boldsymbol{X}\boldsymbol{B}\boldsymbol{w}\big\|_2^2.
+\frac{1}{n}\big\|\mathbf{Y} - \mathbf{X}\mathbf{B}\mathbf{w}\big\|_2^2.
 \]</span></p>
-<p>Expanding this expression using only <span class="math inline">\(\boldsymbol{r}\)</span> and <span class="math inline">\(\boldsymbol{R}\)</span> yields</p>
+<p>Expanding this expression using only <span class="math inline">\(\mathbf{r}\)</span> and <span class="math inline">\(\mathbf{R}\)</span> yields</p>
 <p><span class="math display">\[
-\frac{1}{n}\|\boldsymbol{Y} -
-\boldsymbol{X}\boldsymbol{B}\boldsymbol{w}\|_2^2
+\frac{1}{n}\|\mathbf{Y} - \mathbf{X}\mathbf{B}\mathbf{w}\|_2^2
 =
 \text{const}
-- 2\,\boldsymbol{w}^{\top}\boldsymbol{B}^{\top}\boldsymbol{r}
+- 2\,\mathbf{w}^{\top}\mathbf{B}^{\top}\mathbf{r}
 +
-\boldsymbol{w}^{\top}\boldsymbol{B}^{\top}\boldsymbol{R}\boldsymbol{B}\boldsymbol{w}.
+\mathbf{w}^{\top}\mathbf{B}^{\top}\mathbf{R}\mathbf{B}\mathbf{w}.
 \]</span></p>
 <p>Setting the derivative to zero gives the closed-form estimator of the
 ensemble weights:</p>
 <p><span class="math display">\[
-\widehat{\boldsymbol{w}}
+\widehat{\mathbf{w}}
 =
-\big(\boldsymbol{B}^{\top}\boldsymbol{R}\boldsymbol{B}\big)^{-1}
-\boldsymbol{B}^{\top}\boldsymbol{r}.
+\big(\mathbf{B}^{\top}\mathbf{R}\mathbf{B}\big)^{-1}
+\mathbf{B}^{\top}\mathbf{r}.
 \]</span></p>
 <p>The summary-level composite external model is then obtained as</p>
 <p><span class="math display">\[
-\check{\boldsymbol{\beta}}
+\check{\mathbf{\beta}}
 =
-\sum_{k=1}^{K} \widehat{w}_k\,\check{\boldsymbol{\beta}}_{k}.
+\sum_{k=1}^{K} \widehat{w}_k\,\check{\mathbf{\beta}}_{k}.
 \]</span></p>
 <p>This aggregated coefficient vector can be plugged directly into the
 <code>BRIER.S</code> objective, enabling information borrowing from

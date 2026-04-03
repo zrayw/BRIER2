@@ -94,11 +94,11 @@ defined as <span class="math display">\[\begin{equation}
 =
   \frac{1}{n}
 \left\{
-  \mathrm{Dev}\!\left(y,\widehat{\boldsymbol{\beta}}_{\eta,\lambda}\right)
+  \mathrm{Dev}\!\left(y,\widehat{\mathbf{\beta}}_{\eta,\lambda}\right)
   +
     \log(n)\,\mathrm{df}(\eta,\lambda)
   \right\},
-\end{equation}\]</span> where <span class="math inline">\(\mathrm{Dev}(y,\widehat{\boldsymbol{\beta}}_{\eta,\lambda})\)</span>
+\end{equation}\]</span> where <span class="math inline">\(\mathrm{Dev}(y,\widehat{\mathbf{\beta}}_{\eta,\lambda})\)</span>
 denotes the deviance evaluated at the fitted model with tuning
 parameters <span class="math inline">\((\eta,\lambda)\)</span>, and
 <span class="math inline">\(\mathrm{df}(\eta,\lambda)\)</span> is the
@@ -106,22 +106,22 @@ corresponding effective degrees of freedom.</p>
 <p><strong>Mallows’ <span class="math inline">\(C_p\)</span>.</strong>
 For linear models with known error variance <span class="math inline">\(\sigma^2\)</span>, Mallows’ <span class="math inline">\(C_p\)</span> is defined as <span class="math display">\[\begin{equation}
 \label{eq:Cp}
-C_p(\widehat{\boldsymbol{\mu}})
+C_p(\widehat{\mathbf{\mu}})
 =
   \frac{1}{n}
-\left\| \boldsymbol{y} - \widehat{\boldsymbol{\mu}} \right\|^2
+\left\| \mathbf{y} - \widehat{\mathbf{\mu}} \right\|^2
 +
   \frac{2\sigma^2}{n}\, \mathrm{df},
-\end{equation}\]</span> where <span class="math inline">\(\widehat{\boldsymbol{\mu}}\)</span> denotes the
-vector of predicted means and <span class="math inline">\(\mathrm{df}\)</span> is the associated degrees of
-freedom.</p>
+\end{equation}\]</span> where <span class="math inline">\(\widehat{\mathbf{\mu}}\)</span> denotes the vector
+of predicted means and <span class="math inline">\(\mathrm{df}\)</span>
+is the associated degrees of freedom.</p>
 <p><strong>Generalized Cross-Validation (GCV).</strong> Generalized
 cross-validation provides a computationally efficient approximation to
 leave-one-out cross-validation and is given by <span class="math display">\[\begin{equation}
 \label{eq:GCV}
 \mathrm{GCV}(\lambda)
 =
-  \frac{\mathrm{Dev}(y,\widehat{\boldsymbol{\beta}}_{\lambda})}
+  \frac{\mathrm{Dev}(y,\widehat{\mathbf{\beta}}_{\lambda})}
 {n \left\{ 1 - \mathrm{df}(\lambda)/n \right\}^2}.
 \end{equation}\]</span></p>
 </div>
@@ -140,10 +140,10 @@ criteria (GIC), to select the tuning parameters <span class="math inline">\(\eta
 \label{eq:pseudoval}
 f(\lambda)
 =
-  \frac{\boldsymbol{\beta}_{\lambda}^{\top}\,\widehat{\mathbf{r}}}
-{\sqrt{\boldsymbol{\beta}_{\lambda}^{\top}\,\widetilde{\boldsymbol{X}}_{0}^{\top}
-  \widetilde{\boldsymbol{X}}_{0}\,\boldsymbol{\beta}_{\lambda}}},
-\end{equation}\]</span> where <span class="math inline">\(\widetilde{\boldsymbol{X}}_{0}\)</span> is the
+  \frac{\mathbf{\beta}_{\lambda}^{\top}\,\widehat{\mathbf{r}}}
+{\sqrt{\mathbf{\beta}_{\lambda}^{\top}\,\widetilde{\mathbf{X}}_{0}^{\top}
+  \widetilde{\mathbf{X}}_{0}\,\mathbf{\beta}_{\lambda}}},
+\end{equation}\]</span> where <span class="math inline">\(\widetilde{\mathbf{X}}_{0}\)</span> is the
 standardized genotype matrix from an external reference panel and <span class="math inline">\(\widehat{\mathbf{r}}\)</span> is a
 shrinkage-adjusted estimate of the SNP–phenotype correlation vector.
 Specifically, each element of <span class="math inline">\(\widehat{\mathbf{r}}\)</span> is defined as <span class="math display">\[
@@ -152,31 +152,31 @@ Specifically, each element of <span class="math inline">\(\widehat{\mathbf{r}}\)
     r_j\left(1-\mathrm{fdr}_j\right),
   \]</span> where <span class="math inline">\(\mathrm{fdr}_j\)</span>
 denotes the local false discovery rate for SNP <span class="math inline">\(j\)</span>. This objective approximates the
-Spearman correlation between the predicted genetic score <span class="math inline">\(\widetilde{\boldsymbol{X}}_{0}\boldsymbol{\beta}_{\lambda}\)</span>
+Spearman correlation between the predicted genetic score <span class="math inline">\(\widetilde{\mathbf{X}}_{0}\mathbf{\beta}_{\lambda}\)</span>
 and the unobserved true phenotype.</p>
 <p><strong>Bregman-divergence based <span class="math inline">\(C_p\)</span>.</strong> For summary-level settings,
 we adopt a Bregman-divergence based extension of Mallows’ <span class="math inline">\(C_p\)</span>, referred to as BRC<span class="math inline">\(_p\)</span>. The criterion is defined as <span class="math display">\[\begin{equation}
 \label{eq:BRCp}
 \widehat{R}_{\mathrm{BRC}_p}
-\!\left(\widehat{\boldsymbol{\beta}}_{\eta,\lambda}\right)
+\!\left(\widehat{\mathbf{\beta}}_{\eta,\lambda}\right)
 =
-  D_{\mathcal{E}_{\widetilde{\boldsymbol{\Sigma}}}}
+  D_{\mathcal{E}_{\widetilde{\mathbf{\Sigma}}}}
 \!\left(
-  \widehat{\boldsymbol{\beta}}_{\eta,\lambda},
-  \widehat{\boldsymbol{\beta}}
+  \widehat{\mathbf{\beta}}_{\eta,\lambda},
+  \widehat{\mathbf{\beta}}
   \right)
 +
   \frac{|\mathcal{S}_{\eta,\lambda}|}{n(1+\eta)}
 \,
-D_{\mathcal{E}_{\widetilde{\boldsymbol{\Sigma}}}}
+D_{\mathcal{E}_{\widetilde{\mathbf{\Sigma}}}}
 \!\left(
-  \widehat{\boldsymbol{\beta}}_{\eta,\lambda},
-  \widehat{\boldsymbol{\beta}}
+  \widehat{\mathbf{\beta}}_{\eta,\lambda},
+  \widehat{\mathbf{\beta}}
   \right),
-\end{equation}\]</span> where <span class="math inline">\(D_{\mathcal{E}_{\widetilde{\boldsymbol{\Sigma}}}}(\cdot,\cdot)\)</span>
+\end{equation}\]</span> where <span class="math inline">\(D_{\mathcal{E}_{\widetilde{\mathbf{\Sigma}}}}(\cdot,\cdot)\)</span>
 denotes the Bregman divergence induced by a quadratic loss with respect
-to the linkage disequilibrium (LD) matrix <span class="math inline">\(\widetilde{\boldsymbol{\Sigma}}\)</span>, <span class="math inline">\(\widehat{\boldsymbol{\beta}}\)</span> is a pilot
-or reference coefficient estimate, and <span class="math inline">\(|\mathcal{S}_{\eta,\lambda}|\)</span> is the size
+to the linkage disequilibrium (LD) matrix <span class="math inline">\(\widetilde{\mathbf{\Sigma}}\)</span>, <span class="math inline">\(\widehat{\mathbf{\beta}}\)</span> is a pilot or
+reference coefficient estimate, and <span class="math inline">\(|\mathcal{S}_{\eta,\lambda}|\)</span> is the size
 of the active set associated with tuning parameters <span class="math inline">\((\eta,\lambda)\)</span>. The factor <span class="math inline">\(1+\eta\)</span> accounts for the effective
 sample-size inflation induced by external model integration.</p>
 <p><strong>Generalized Information Criterion (GIC).</strong> We further
@@ -187,7 +187,7 @@ models, defined as <span class="math display">\[\begin{equation}
 =
   \frac{1}{n}
 \left\{
-  G\!\left(\widehat{\boldsymbol{\beta}}_{\eta,\lambda}\right)
+  G\!\left(\widehat{\mathbf{\beta}}_{\eta,\lambda}\right)
   +
     a_n\,\mathrm{df}(\eta,\lambda)
   \right\},
@@ -207,14 +207,14 @@ disequilibrium matrix.</p>
 information-criterion–based model selection procedures. Both
 <code>BRIERi</code> and <code>BRIERs</code> can be formulated as
 penalized regression problems with respect to an external-model–weighted
-response, denoted by <span class="math inline">\(\widetilde{\boldsymbol{Y}}\)</span> Under this
+response, denoted by <span class="math inline">\(\widetilde{\mathbf{Y}}\)</span> Under this
 formulation, the effective degrees of freedom of the fitted model can be
 explicitly expressed as <span class="math display">\[\begin{equation}
 \label{eq:df_weighted}
 \mathrm{df}
 =
-  \frac{\mathrm{df}(\widetilde{\boldsymbol{Y}})}{1+\eta},
-\end{equation}\]</span> where <span class="math inline">\(\mathrm{df}(\widetilde{\boldsymbol{Y}})\)</span>
+  \frac{\mathrm{df}(\widetilde{\mathbf{Y}})}{1+\eta},
+\end{equation}\]</span> where <span class="math inline">\(\mathrm{df}(\widetilde{\mathbf{Y}})\)</span>
 denotes the degrees of freedom associated with the weighted response,
 and <span class="math inline">\(\eta\)</span> is integration weight. In
 <code>BRIER2</code>, we implement two approaches to estimate the degrees
@@ -233,22 +233,21 @@ criterion (GIC) . Specifically, the degrees of freedom are defined as
 \mathrm{tr}
 \left\{
   \left[
-    \nabla^{2}_{\boldsymbol{\beta}}
-    Q_{\eta,
-\lambda}\!\left(\widehat{\boldsymbol{\beta}}_{\lambda}\right)
+    \nabla^{2}_{\mathbf{\beta}}
+    Q_{\eta, \lambda}\!\left(\widehat{\mathbf{\beta}}_{\lambda}\right)
     \right]^{-1}
-  \nabla^{2}_{\boldsymbol{\beta}}
-  \ell\!\left(\widehat{\boldsymbol{\beta}}_{\lambda}\right)
+  \nabla^{2}_{\mathbf{\beta}}
+  \ell\!\left(\widehat{\mathbf{\beta}}_{\lambda}\right)
   \right\},
 \end{equation}\]</span> where <span class="math display">\[
-  Q_{\eta, \lambda}(\boldsymbol{\beta})
+  Q_{\eta, \lambda}(\mathbf{\beta})
   =
-    Q_{\eta}(\boldsymbol{\beta})
+    Q_{\eta}(\mathbf{\beta})
   +
-    p_{\lambda}(\boldsymbol{\beta})
+    p_{\lambda}(\mathbf{\beta})
   \]</span> denotes the penalized objective function with penalty
-function <span class="math inline">\(p_{\lambda}(\boldsymbol{\beta})\)</span> and <span class="math inline">\(\widehat{\boldsymbol{\beta}}_{\lambda}\)</span> is
-the estimated coefficient vector at tuning parameter <span class="math inline">\(\lambda\)</span>.</p>
+function <span class="math inline">\(p_{\lambda}(\mathbf{\beta})\)</span> and <span class="math inline">\(\widehat{\mathbf{\beta}}_{\lambda}\)</span> is the
+estimated coefficient vector at tuning parameter <span class="math inline">\(\lambda\)</span>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
