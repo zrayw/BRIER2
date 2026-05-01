@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BRIER2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -307,7 +307,7 @@ integration-weight parameters <code>eta</code> controlling the degree of
 information borrowing from the external cohort(s).</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">BRIERfull</span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BRIERfull.html">BRIERfull</a></span><span class="op">(</span></span>
 <span>  X <span class="op">=</span> <span class="va">X</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">y</span>,</span>
 <span>  ind <span class="op">=</span> <span class="va">ind</span>,</span>
@@ -327,7 +327,7 @@ sources as indicated by the source indicator vector ind .</p>
 <span><span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">X_target</span><span class="op">[</span>, <span class="va">sub</span><span class="op">]</span>, <span class="va">X_ext1</span><span class="op">[</span>, <span class="va">sub</span><span class="op">]</span>, <span class="va">X_ext2</span><span class="op">[</span>, <span class="va">sub</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">ind</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y_target</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y_ext1</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y_ext2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fit</span> <span class="op">=</span> <span class="fu">BRIERfull</span><span class="op">(</span></span>
+<span><span class="va">fit</span> <span class="op">=</span> <span class="fu"><a href="../reference/BRIERfull.html">BRIERfull</a></span><span class="op">(</span></span>
 <span>  X <span class="op">=</span> <span class="va">pred</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">pheno</span>,</span>
 <span>  ind <span class="op">=</span> <span class="va">ind</span>,</span>
@@ -374,7 +374,7 @@ metrics for different outcomes are provided in the <a href="LINK">Appendix</a>.<
 <span><span class="va">X_val</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"path/to/file"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Hyperparameter tuning using independent validation set</span></span>
-<span><span class="va">out</span> <span class="op">=</span> <span class="fu">BRIERfull.selection</span><span class="op">(</span></span>
+<span><span class="va">out</span> <span class="op">=</span> <span class="fu"><a href="../reference/BRIERfull.selection.html">BRIERfull.selection</a></span><span class="op">(</span></span>
 <span>  fit <span class="op">=</span> <span class="va">fit</span>,</span>
 <span>  X.val <span class="op">=</span> <span class="va">X_val</span>, </span>
 <span>  y.val <span class="op">=</span> <span class="va">y_val</span>,</span>
@@ -787,7 +787,7 @@ provided in the <a href="LINK">Appendix</a>.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">X_val</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"path/to/file"</span><span class="op">)</span></span>
 <span><span class="va">y_val</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"path/to/file"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">out</span> <span class="op">=</span> <span class="fu">BRIERi.selection</span><span class="op">(</span></span>
+<span><span class="va">out</span> <span class="op">=</span> <span class="fu"><a href="../reference/BRIERi.selection.html">BRIERi.selection</a></span><span class="op">(</span></span>
 <span>  fit <span class="op">=</span> <span class="va">fit</span>,</span>
 <span>  X.val <span class="op">=</span> <span class="va">X_val</span>, </span>
 <span>  y.val <span class="op">=</span> <span class="va">y_val</span>,</span>
@@ -856,7 +856,7 @@ consistently achieves better predictive performance.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">X_val</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"path/to/file"</span><span class="op">)</span></span>
 <span><span class="va">y_val</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"path/to/file"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">out</span> <span class="op">=</span> <span class="fu">BRIERi.selection</span><span class="op">(</span></span>
+<span><span class="va">out</span> <span class="op">=</span> <span class="fu"><a href="../reference/BRIERi.selection.html">BRIERi.selection</a></span><span class="op">(</span></span>
 <span>  fit <span class="op">=</span> <span class="va">fit</span>,</span>
 <span>  criteria <span class="op">=</span> <span class="st">"Cp"</span></span>
 <span><span class="op">)</span></span>
@@ -1458,7 +1458,7 @@ are provided in the <a href="LINK">Appendix</a>.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">X_val</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"path/to/file"</span><span class="op">)</span></span>
 <span><span class="va">y_val</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"path/to/file"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">out</span> <span class="op">=</span> <span class="fu">BRIERs</span><span class="op">(</span></span>
+<span><span class="va">out</span> <span class="op">=</span> <span class="fu"><a href="../reference/BRIERs.html">BRIERs</a></span><span class="op">(</span></span>
 <span>  model <span class="op">=</span> <span class="va">fit</span>, </span>
 <span>  criteria <span class="op">=</span> <span class="st">"gaussian.mspe"</span>, </span>
 <span>  X.val <span class="op">=</span> <span class="va">X_val</span>,</span>
@@ -1532,7 +1532,7 @@ target data.</p>
 recommend <span class="math inline">\(GIC\)</span>, as it consistently
 achieves better predictive performance.</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">BRIERs</span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BRIERs.html">BRIERs</a></span><span class="op">(</span></span>
 <span>    model <span class="op">=</span> <span class="va">fit</span>, </span>
 <span>    criteria <span class="op">=</span> <span class="st">"GIC"</span>, </span>
 <span>    TN <span class="op">=</span> <span class="va">dat</span><span class="op">$</span><span class="va">TN</span>,</span>
