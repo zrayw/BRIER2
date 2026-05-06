@@ -705,16 +705,15 @@ deviance, AUC (binary outcomes), and C-index (survival outcomes).
 Additional details are provided in the <a href="Appendix_Distr.html">Appendix: Distribution Family and Evaluation
 Metrics</a>.</p>
 <div class="section level4">
-<h4 id="plot-eta">
-<code>plot.eta</code><a class="anchor" aria-label="anchor" href="#plot-eta"></a>
+<h4 id="visualizing-predictive-performance-as-a-function-of-integration-weight-eta">Visualizing predictive performance as a function of integration
+weight <span class="math inline">\(\eta\)</span><a class="anchor" aria-label="anchor" href="#visualizing-predictive-performance-as-a-function-of-integration-weight-eta"></a>
 </h4>
-<p>In addtion to guiding the selection of integration weight <span class="math inline">\(\eta\)</span> in parameter tuning, the
-<code>plot.eta</code> function visualizes predictive performance under
-user-specified evaluation metrics as a function of the integration
-weight <span class="math inline">\(\eta\)</span>, if a testing set is
-provided. This plot is particularly useful for assessing heterogeneity
-between the target (target) data and external sources.</p>
-<p>For a single external cohort, <code>plot.eta</code> returns a
+<p>The <code><a href="../reference/plot.eta.html">plot.eta()</a></code> function visualizes predictive
+performance under user-specified evaluation metrics as a function of the
+integration weight <span class="math inline">\(\eta\)</span>, if a
+testing set is provided. This plot is particularly useful for assessing
+heterogeneity between the target (target) data and external sources.</p>
+<p>For a single external cohort, <code><a href="../reference/plot.eta.html">plot.eta()</a></code> returns a
 <code>ggplot2</code> object in which the solid green curve traces
 predictive performance across candidate values of <span class="math inline">\(\eta\)</span>, and a black triangle marks the
 value of <span class="math inline">\(\eta\)</span> selected during
@@ -868,14 +867,14 @@ the target and external data is high.</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="plot-box">
-<code>plot.box</code><a class="anchor" aria-label="anchor" href="#plot-box"></a>
+<h4 id="visualizing-predictive-performance-between-the-target-external-and-brier-model">Visualizing predictive performance between the target, external, and
+BRIER model<a class="anchor" aria-label="anchor" href="#visualizing-predictive-performance-between-the-target-external-and-brier-model"></a>
 </h4>
-<p>The <code>plot.box</code> function provides a complementary
+<p>The <code><a href="../reference/plot.box.html">plot.box()</a></code> function provides a complementary
 perspective for evaluating <code>BRIER</code> models. It visualizes the
 distribution of predictive performance across bootstrap resamples using
 boxplots, thereby capturing variability introduced by sampling
-randomness. Below, we illustrate <code>plot.box</code> under settings
+randomness. Below, we illustrate <code><a href="../reference/plot.box.html">plot.box()</a></code> under settings
 where the external information exhibits low and high heterogeneity
 relative to the target (target) data.</p>
 <p><strong>Integrating low heterogeneous external
@@ -939,19 +938,20 @@ integration.</p>
 <div class="section level3">
 <h3 id="sec-importance">6.2 Variable importance<a class="anchor" aria-label="anchor" href="#sec-importance"></a>
 </h3>
-<p>The <code>plot.importance</code> function provides a stability-based
-assessment of variable importance by repeatedly re-validation the fitted
-model on bootstrap resamples of the validation data. For each
-replication, the procedure records which predictors enter the model, and
-it summarizes their selection frequencies across all resamples. The
-resulting plot displays the predictors ranked by how consistently they
-are selected, offering an interpretable measure of feature importance
-that complements effect-size estimates. High-frequency markers indicate
-stable, reproducible signals that contribute to prediction performance,
-whereas low-frequency markers may reflect noise or dataset-specific
-fluctuations. This diagnostic is particularly valuable in
-high-dimensional genomic settings, where model sparsity and sampling
-variability can obscure truly informative predictors.</p>
+<p>The <code><a href="../reference/plot.importance.html">plot.importance()</a></code> function provides a
+stability-based assessment of variable importance by repeatedly
+re-validation the fitted model on bootstrap resamples of the validation
+data. For each replication, the procedure records which predictors enter
+the model, and it summarizes their selection frequencies across all
+resamples. The resulting plot displays the predictors ranked by how
+consistently they are selected, offering an interpretable measure of
+feature importance that complements effect-size estimates.
+High-frequency markers indicate stable, reproducible signals that
+contribute to prediction performance, whereas low-frequency markers may
+reflect noise or dataset-specific fluctuations. This diagnostic is
+particularly valuable in high-dimensional genomic settings, where model
+sparsity and sampling variability can obscure truly informative
+predictors.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot.importance.html">plot.importance</a></span><span class="op">(</span></span>
 <span>  <span class="va">fit</span>, </span>
