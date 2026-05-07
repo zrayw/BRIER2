@@ -315,18 +315,8 @@ Metrics</a>.</p>
 <span>  X.val <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">target</span><span class="op">$</span><span class="va">validation</span><span class="op">$</span><span class="va">X</span>,</span>
 <span>  y.val <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">target</span><span class="op">$</span><span class="va">validation</span><span class="op">$</span><span class="va">y</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co"># Best eta: ( 0.774, 0.167 )</span></span>
-<span><span class="co"># Best lambda: 0.752 </span></span></code></pre></div>
-<p>Function <code>plot.eta</code> can be used to guide and visualize the
-selection of the best performing integration weight <span class="math inline">\(\eta\)</span>, according to different evaluation
-metrics used in the validation set. For multiple external cohorts
-(&gt;1), <code>plot.eta</code> do not generate ggplot objects for
-plotting but only generate summary results. The user could visualize
-using XXX as illustrated below. The below figure displays the heat map
-of predictive performance (here, MSPE for a Gaussian outcome) evaluated
-on the validation set as a function of <span class="math inline">\(\eta_1\)</span> and <span class="math inline">\(\eta_2\)</span>. The optimal integration weight is
-identified as the value of <span class="math inline">\(\eta\)</span>
-combination that minimizes the evaluation criterion.</p>
+<span><span class="co"># Best eta: ( 0.464, 0.278 )</span></span>
+<span><span class="co"># Best lambda: 0.575 </span></span></code></pre></div>
 <p>The function <code>plot.eta</code> can be used to guide and visualize
 the selection of the best-performing integration weight <span class="math inline">\(\eta\)</span>, using different evaluation metrics
 computed on the validation set. When only a single external cohort is
@@ -349,12 +339,12 @@ identified as the combination <span class="math inline">\((\eta_1,
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot.eta.html">plot.eta</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">summary.df</span><span class="op">)</span></span>
 <span><span class="co">#       eta_1 eta_2      criteria   metric metric.lo metric.hi</span></span>
-<span><span class="co"># 1 0.0000000     0 gaussian.mspe 137.9169        NA        NA</span></span>
-<span><span class="co"># 2 0.1000000     0 gaussian.mspe 135.6191        NA        NA</span></span>
-<span><span class="co"># 3 0.1668101     0 gaussian.mspe 133.8548        NA        NA</span></span>
-<span><span class="co"># 4 0.2782559     0 gaussian.mspe 131.5709        NA        NA</span></span>
-<span><span class="co"># 5 0.4641589     0 gaussian.mspe 129.7242        NA        NA</span></span>
-<span><span class="co"># 6 0.7742637     0 gaussian.mspe 129.2638        NA        NA</span></span>
+<span><span class="co"># 1 0.0000000     0 gaussian.mspe 131.5424        NA        NA</span></span>
+<span><span class="co"># 2 0.1000000     0 gaussian.mspe 117.4442        NA        NA</span></span>
+<span><span class="co"># 3 0.1668101     0 gaussian.mspe 114.0269        NA        NA</span></span>
+<span><span class="co"># 4 0.2782559     0 gaussian.mspe 112.3408        NA        NA</span></span>
+<span><span class="co"># 5 0.4641589     0 gaussian.mspe 112.7791        NA        NA</span></span>
+<span><span class="co"># 6 0.7742637     0 gaussian.mspe 113.9923        NA        NA</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">$</span><span class="va">summary.df</span></span>
 <span><span class="va">df</span><span class="op">$</span><span class="va">eta_1_lab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">eta_1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
@@ -470,9 +460,13 @@ on the training data, using the predicted deviance as evaluation
 criteria, with the specific deviance definition provided in <a href="Appendix_Distr.html">Appendix: Distribution Family and Evaluation
 Metrics</a>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BRIERi.cv.html">BRIERi.cv</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">y</span>, beta.external <span class="op">=</span> <span class="va">beta.external</span>, eta.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># Best eta: 10 </span></span>
-<span><span class="co"># Best lambda: 0.239 </span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BRIERi.cv.html">BRIERi.cv</a></span><span class="op">(</span></span>
+<span>  <span class="va">X</span>, <span class="va">y</span>, beta.external <span class="op">=</span> <span class="va">beta.external</span>, </span>
+<span>  eta.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>  seed <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Best eta: 5.995 </span></span>
+<span><span class="co"># Best lambda: 0.403 </span></span></code></pre></div>
 <p><code>BRIERi.selection</code> can also select the optimal
 hyper-parameters if an independent validation set is provided. Below
 displays an example of using MSPE as evaluation metric for continuous
@@ -485,8 +479,8 @@ Family and Evaluation Metrics</a>.</p>
 <span>  X.val <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">target</span><span class="op">$</span><span class="va">validation</span><span class="op">$</span><span class="va">X</span>,</span>
 <span>  y.val <span class="op">=</span> <span class="va">data</span><span class="op">$</span><span class="va">target</span><span class="op">$</span><span class="va">validation</span><span class="op">$</span><span class="va">y</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co"># Best eta:  2.154 </span></span>
-<span><span class="co"># Best lambda: 0.38 </span></span></code></pre></div>
+<span><span class="co"># Best eta:  3.594 </span></span>
+<span><span class="co"># Best lambda: 0.181</span></span></code></pre></div>
 <p>For continuous, binary, and count outcomes, users can also utilize
 information-based criteria to tune the optimal hyperparameters <span class="math inline">\((\eta, \lambda)\)</span>. We implemented Bayesian
 information criteria (BIC), Mallow’s <span class="math inline">\(C_p\)</span> (<span class="math inline">\(C_p\)</span>), and generalized cross validation
@@ -502,7 +496,7 @@ predictive performance.</p>
 <span>  <span class="va">fit</span>, criteria <span class="op">=</span> <span class="st">"BIC"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co"># Best eta:  10 </span></span>
-<span><span class="co"># Best lambda: 0.69</span></span></code></pre></div>
+<span><span class="co"># Best lambda: 0.561</span></span></code></pre></div>
 <p>The function <code>plot.eta</code> can be used to guide and visualize
 the selection of the optimal integration weight <span class="math inline">\(\eta\)</span> based on predictive performance
 under different evaluation metrics from cross-validation and an
@@ -596,8 +590,9 @@ values of <span class="math inline">\(\eta\)</span> allow the model to
 integrate more information from the external cohort. The user should
 rely on prior knowledge or problem-specific considerations to determine
 an appropriate range of <span class="math inline">\(\eta\)</span>’s. We
-highly recommend to specify the exact outcome family as it is important
-for downstream analysis.</p>
+strongly recommend specifying the exact outcome family of the cohort
+from which the summary statistics are derived, as it is important for
+downstream analysis.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BRIERs.html">BRIERs</a></span><span class="op">(</span></span>
 <span>  sumstats <span class="op">=</span> <span class="va">summary</span>, </span>
@@ -644,8 +639,8 @@ Family and Evaluation Metrics</a>.</p>
 <span>  X.val <span class="op">=</span> <span class="va">X_val</span>,</span>
 <span>  y.val <span class="op">=</span> <span class="va">y_val</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co"># Best eta: 10 </span></span>
-<span><span class="co"># Best lambda: 0.021 </span></span></code></pre></div>
+<span><span class="co"># Best eta: 5.995 </span></span>
+<span><span class="co"># Best lambda: 0.011 </span></span></code></pre></div>
 <p>When an independent validation set is not available, users may rely
 on information-based criteria to tune the optimal hyperparameters <span class="math inline">\((\eta, \lambda)\)</span>. We implemented
 Generalized information criteria (GIC; specified by argument
@@ -664,7 +659,7 @@ predictive performance.</p>
 <span>  TN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>, h2 <span class="op">=</span> <span class="fl">0.2</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co"># Best eta: 10 </span></span>
-<span><span class="co"># Best lambda: 0.064  </span></span></code></pre></div>
+<span><span class="co"># Best lambda: 0.045  </span></span></code></pre></div>
 <p>The function <code>plot.eta</code> can be used to guide and visualize
 the selection of the optimal integration weight <span class="math inline">\(\eta\)</span> based on predictive performance
 under different evaluation metrics from an independent validation set,
